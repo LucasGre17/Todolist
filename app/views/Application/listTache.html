@@ -4,15 +4,23 @@
 <h1>Liste des tâches</h1>
 
 #{if taches}
+
 <ul>
-    *{ A COMPLETER }*
-	<li id="*{ A COMPLETER }*">
-	    <input type="checkbox">
-	    <span class="title">*{ A COMPLETER }*</span>
-	    <a href="#" class="edit"><img src="@{'/public/images/edit.png'}" alt="modifier la tache" width="10" height="10"></a>
-	    <a href="#" class="del"><img src="@{'/public/images/delete.png'}" alt="supprimer la tache" width="10" height="10"></a>
-	</li>
+
+    #{list items:nom, as:'Table' }
+        <li>${nom}</li>
+    #{/list}
+
+            *{ A COMPLETER }*
+            <li id="*{ A COMPLETER }*">
+                <input type="checkbox">
+                <span class="title">*{ A COMPLETER }*</span>
+                <a href="#" class="edit"><img src="@{'/public/images/edit.png'}" alt="modifier la tache" width="10" height="10"></a>
+                <a href="#" class="del"><img src="@{'/public/images/delete.png'}" alt="supprimer la tache" width="10" height="10"></a>
+            </li>
+
 </ul>
+
 #{/if}
 #{else}
 	<p>Aucune tâche</p>

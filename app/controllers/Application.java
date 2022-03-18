@@ -11,9 +11,8 @@ public class Application extends Controller {
 
     // Affiche toutes les tâches (voir variable taches) dans le template views/listTache.html
     public static void listTache() {
-        Query query = JPA.em().createQuery("select * from Tache");
-        List<Tache> taches = query.getResultList();
-		render(taches);
+        List<Tache> taches = Tache.findAll();
+        render(taches);
     }
 
     // Affiche le template views/ajouterTacheForm.html (formulaire d'ajout d'une tâche)

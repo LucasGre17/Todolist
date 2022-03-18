@@ -6,5 +6,5 @@
 #   ...
 
 Tache(t1):
-    title: tester Play! Framework
-    done: true
+    nom: Nom de la tache
+    description: Tester le framework Play!
