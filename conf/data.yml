@@ -6,5 +6,10 @@
 #   ...
 
 Tache(t1):
-    nom: Nom de la tache
-    description: Tester le framework Play!
+    nom: "Faire les courses"
+    description: "Acheter des bananes"
+
+Tache(t2):
+    nom: "Faire le ménage"
+    description: "Passer l'aspirateur"
+
