@@ -1,14 +1,19 @@
 package controllers;
 
+import models.Tache;
+import play.db.jpa.JPA;
 import play.mvc.Controller;
+
+import javax.persistence.Query;
+import java.util.List;
 
 public class Application extends Controller {
 
     // Affiche toutes les tâches (voir variable taches) dans le template views/listTache.html
     public static void listTache() {
-        // A COMPLETER
-        // ...
-		render();
+        Query query = JPA.em().createQuery("select * from Tache");
+        List<Tache> taches = query.getResultList();
+		render(taches);
     }
 
     // Affiche le template views/ajouterTacheForm.html (formulaire d'ajout d'une tâche)
