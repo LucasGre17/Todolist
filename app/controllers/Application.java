@@ -1,10 +1,7 @@
 package controllers;
 
 import models.Tache;
-import play.db.jpa.JPA;
 import play.mvc.Controller;
-
-import javax.persistence.Query;
 import java.util.List;
 
 public class Application extends Controller {
@@ -19,12 +16,16 @@ public class Application extends Controller {
     public static void ajouterTacheForm() {
         // A COMPLETER
         // ...
+        render();
     }
 
     // Ajoute une nouvelle tâche en base de données et affiche le template views/ajouterTache.html
-    public static void ajouterTache() {
+    public static void ajouterTache(String nom, String message) {
         // A COMPLETER
         // ...
+        Tache tache = new Tache(nom, message);
+        tache.save();
+        render();
     }
 
     // Change le statut d'une tâche en base de données
