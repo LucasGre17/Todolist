@@ -1,0 +1,10 @@
+#Structure d'un fichier yml :
+#NomClasse(nomInstance):
+#   attributClasse1: valeur
+#   attributClasse2: valeur
+#   attributClasse3: valeur
+#   ...
+
+Tache(t1):
+    title: tester Play! Framework
+    done: true
