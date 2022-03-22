@@ -2,7 +2,11 @@ package controllers;
 
 import models.Tache;
 import play.mvc.Controller;
+import play.mvc.Router;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application extends Controller {
 
@@ -38,7 +42,6 @@ public class Application extends Controller {
     public static void supprimerTache(Long id) {
         // A COMPLETER
         // ...
-        System.out.println(id);
         Tache tache = Tache.findById(id);
         tache.delete();
     }
