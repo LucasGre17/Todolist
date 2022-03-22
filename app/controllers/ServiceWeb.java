@@ -19,8 +19,8 @@ public class ServiceWeb extends Controller {
     // Retourne au format JSON la liste des tâches (READ => GET)
     // Test (curl) : curl localhost:9000/api/taches.json
     public static void listTache() {
-        // A COMPLETER
-        // ...
+        List<Tache> tacheList = Tache.findAll();
+        renderJSON(tacheList);
     }
 
     // Retourne au format JSON une tâche (READ => GET)

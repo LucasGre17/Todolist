@@ -9,9 +9,6 @@ import javax.persistence.Id;
 @Entity
 public class Tache extends Model {
 
-    @Id
-    @GeneratedValue
-    public Long id;
     public String nom;
     public String description;
 
