@@ -8,6 +8,7 @@ GET     /                                       Application.listTache
 GET     /taches/ajouter                         Application.ajouterTacheForm
 POST    /taches/ajouter                         Application.ajouterTache
 POST    /taches/valider                         Application.validerTache
+POST    /taches/date                            Application.editDateTache
 DELETE  /taches/supprimer                       Application.supprimerTache
 PUT     /taches/modification                    Application.editTache
 
@@ -17,6 +18,7 @@ GET     /api/taches.json                        ServiceWeb.listTache
 GET     /api/tache/{id}.json                    ServiceWeb.getTache
 PUT     /api/tache/{id}                         ServiceWeb.editTitleTache
 PUT     /api/tache/{id}/change-statut           ServiceWeb.changeStatutTache
+PUT     /api/tache/{id}/change-date             ServiceWeb.editDateTache
 DELETE  /api/tache/{id}                         ServiceWeb.supprimeTache
 
 # Ignore favicon requests

@@ -4,6 +4,10 @@ import models.Tache;
 import play.mvc.Controller;
 import play.mvc.Router;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,17 @@ public class Application extends Controller {
     public static void editTache(Long id, String title) {
         Tache tache = Tache.findById(id);
         tache.nom = title;
+        tache.save();
+    }
+
+    public static void editDateTache(Long id, String date) throws ParseException {
+
+        date = date.replace("T"," ");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date newDate = dateFormat.parse(date);
+
+        Tache tache = Tache.findById(id);
+        tache.dateTime = newDate;
         tache.save();
     }
 
