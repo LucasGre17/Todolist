@@ -1,6 +1,5 @@
 package controllers;
 
-import com.google.gson.Gson;
 import models.Tache;
 import play.mvc.Controller;
 
@@ -26,8 +25,8 @@ public class ServiceWeb extends Controller {
     // Retourne au format JSON une tâche (READ => GET)
     // Test (curl) : curl localhost:9000/api/tache/1.json
     public static void getTache(Long id) {
-        // A COMPLETER
-        // ...
+        Tache tache = Tache.findById(id);
+        renderJSON(tache);
     }
 
     // Modifie le titre d'une tâche (UPDATE => PUT)
