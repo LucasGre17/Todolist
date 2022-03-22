@@ -33,6 +33,10 @@ public class ServiceWeb extends Controller {
     public static void editTitleTache(Long id, String title) {
         // A COMPLETER
         // ...
+        Tache tache = Tache.findById(id);
+        tache.nom = title;
+        tache.save();
+        renderJSON(tache);
     }
 
     // Change le statut d'une tâche (UPDATE => PUT)
