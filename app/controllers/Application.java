@@ -30,8 +30,9 @@ public class Application extends Controller {
 
     // Change le statut d'une tâche en base de données
     public static void validerTache(Long id) {
-    	// A COMPLETER
-        // ...   
+        Tache tache = Tache.findById(id);
+        tache.isDone = !tache.isDone;
+        tache.save();
     }
 
     // Supprime une tâche en base de données

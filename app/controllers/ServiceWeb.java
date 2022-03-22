@@ -31,8 +31,6 @@ public class ServiceWeb extends Controller {
     // Modifie le titre d'une tâche (UPDATE => PUT)
     // Test (curl) : curl -X PUT --data "title=aaabbb" localhost:9000/api/tache/1
     public static void editTitleTache(Long id, String title) {
-        // A COMPLETER
-        // ...
         Tache tache = Tache.findById(id);
         tache.nom = title;
         tache.save();
@@ -42,8 +40,10 @@ public class ServiceWeb extends Controller {
     // Change le statut d'une tâche (UPDATE => PUT)
     // Test (curl) : curl -X PUT --data "title=aaabbb" localhost:9000/api/tache/1
     public static void changeStatutTache(Long id) {
-        // A COMPLETER
-        // ...
+        Tache tache = Tache.findById(id);
+        tache.isDone = !tache.isDone;
+        tache.save();
+        renderJSON(tache);
     }
 
     // Supprime une tâche (DELETE => DELETE)
