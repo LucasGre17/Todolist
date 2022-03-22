@@ -12,7 +12,6 @@ public class ServiceWeb extends Controller {
     // Test (curl) : curl --data "nomTache=task-from-curl" localhost:9000/api/tache
     public static void ajouterTache() {
         // A COMPLETER
-        // ...
     }
 
     // Retourne au format JSON la liste des tâches (READ => GET)
@@ -46,7 +45,6 @@ public class ServiceWeb extends Controller {
     // Supprime une tâche (DELETE => DELETE)
     // Test (curl) : curl -X DELETE localhost:9000/api/tache/1
     public static void supprimeTache(Long id) {
-        // A COMPLETER
         Tache tache = Tache.findById(id);
         tache.delete();
     }

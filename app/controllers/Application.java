@@ -18,15 +18,11 @@ public class Application extends Controller {
 
     // Affiche le template views/ajouterTacheForm.html (formulaire d'ajout d'une tâche)
     public static void ajouterTacheForm() {
-        // A COMPLETER
-        // ...
         render();
     }
 
     // Ajoute une nouvelle tâche en base de données et affiche le template views/ajouterTache.html
     public static void ajouterTache(String nom, String message) {
-        // A COMPLETER
-        // ...
         Tache tache = new Tache(nom, message);
         tache.save();
         render();
@@ -40,16 +36,12 @@ public class Application extends Controller {
 
     // Supprime une tâche en base de données
     public static void supprimerTache(Long id) {
-        // A COMPLETER
-        // ...
         Tache tache = Tache.findById(id);
         tache.delete();
     }
 
     // Modifie une tâche en base de données
     public static void editTache(Long id, String title) {
-        // A COMPLETER
-        // ...
         Tache tache = Tache.findById(id);
         tache.nom = title;
         tache.save();
