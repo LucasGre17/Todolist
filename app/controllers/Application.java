@@ -38,6 +38,9 @@ public class Application extends Controller {
     public static void supprimerTache(Long id) {
         // A COMPLETER
         // ...
+        System.out.println(id);
+        Tache tache = Tache.findById(id);
+        tache.delete();
     }
 
     // Modifie une tâche en base de données

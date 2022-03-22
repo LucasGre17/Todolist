@@ -11,7 +11,7 @@
             <input type="checkbox">
             <span class="title"> ${taches[Tache_index-1].nom} </span>
             <a href="#" class="edit"><img src="@{'/public/images/edit.png'}" alt="modifier la tache" width="10" height="10"></a>
-            <a href="#" class="del"><img src="@{'/public/images/delete.png'}" alt="supprimer la tache" width="10" height="10"></a>
+            <a href="#" class="del" id="${taches[Tache_index-1].id}"><img src="@{'/public/images/delete.png'}" alt="supprimer la tache" width="10" height="10"></a>
         </li>
     #{/list}
 </ul>
@@ -62,9 +62,9 @@
             // A COMPLETER
             // ...
             $.ajax({
-                url: '',
-                type: '',
-                data: {},
+                url: '@{Application.supprimerTache()}',
+                type: 'DELETE',
+                data: {id: $(this).attr('id')},
                 success: function(result) {
                     $('#' + result.id).remove();
                 }
