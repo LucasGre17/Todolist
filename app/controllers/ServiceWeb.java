@@ -1,17 +1,48 @@
 package controllers;
 
+import jdk.internal.net.http.ResponseSubscribers;
 import models.Tache;
 import play.mvc.Controller;
+import play.mvc.Http.Request;
+import sun.security.util.IOUtils;
 
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceWeb extends Controller {
 
     // Ajoute une tâche en base de données (CREATE => POST)
     // Test (curl) : curl --data "nomTache=task-from-curl" localhost:9000/api/tache
     public static void ajouterTache() {
-        // A COMPLETER
+        Request request = Request.current();
+        InputStream content = request.body;
+        String str = "";
+        try {
+            ByteArrayOutputStream result = new ByteArrayOutputStream();
+            byte[] buffer = new byte[8192];
+            int length;
+            while ((length = content.read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            str = result.toString();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        Map<String, String> datas = new HashMap<>();
+
+        String[] tmp = str.split("=");
+
+        for(int i = 0; i < tmp.length; i += 2) {
+            datas.put(tmp[i], tmp[i+1]);
+        }
+
+        Tache tache = new Tache(datas.get("nomTache"), "");
+        tache.save();
+        renderJSON(tache);
     }
 
     // Retourne au format JSON la liste des tâches (READ => GET)
