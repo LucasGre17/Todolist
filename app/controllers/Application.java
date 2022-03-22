@@ -50,6 +50,9 @@ public class Application extends Controller {
     public static void editTache(Long id, String title) {
         // A COMPLETER
         // ...
+        Tache tache = Tache.findById(id);
+        tache.nom = title;
+        tache.save();
     }
 
 }
