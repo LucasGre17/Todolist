@@ -54,13 +54,19 @@ public class Application extends Controller {
 
     public static void editDateTache(Long id, String date) throws ParseException {
 
-        date = date.replace("T"," ");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date newDate = dateFormat.parse(date);
+        if(!date.isEmpty()) {
+            date = date.replace("T", " ");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date newDate = dateFormat.parse(date);
 
-        Tache tache = Tache.findById(id);
-        tache.dateTime = newDate;
-        tache.save();
+            Tache tache = Tache.findById(id);
+            tache.dateTime = newDate;
+            tache.save();
+        }else {
+            Tache tache = Tache.findById(id);
+            tache.dateTime = null;
+            tache.save();
+        }
     }
 
 }
