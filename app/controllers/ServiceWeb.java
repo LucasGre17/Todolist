@@ -3,6 +3,7 @@ package controllers;
 import models.Tache;
 import play.mvc.Controller;
 import play.mvc.Http.Request;
+import play.mvc.Http.Header;
 
 import java.io.InputStreamReader;
 import java.text.DateFormat;
@@ -14,15 +15,24 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ServiceWeb extends Controller {
 
     // Ajoute une tâche en base de données (CREATE => POST)
     // Test (curl) : curl --data "nomTache=task-from-curl" localhost:9000/api/tache
     public static void ajouterTache() {
+        Map<String, Header> headers = request.headers;
+        for (Entry<String, Header> entry : headers.entrySet()) {
+            if(entry.getKey().equals("content-type")) {
+                System.out.println("Content type is '" + entry.getValue() + "'");
+            }
+        }
+
         Request request = Request.current();
         InputStream content = request.body;
         String str = "";
+        String headerStr = "";
         try {
             ByteArrayOutputStream result = new ByteArrayOutputStream();
             byte[] buffer = new byte[8192];
@@ -31,19 +41,27 @@ public class ServiceWeb extends Controller {
                 result.write(buffer, 0, length);
             }
             str = result.toString();
+            System.out.println("Body send data is this form :\n" + str);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
 
         Map<String, String> datas = new HashMap<>();
 
-        String[] tmp = str.split("=");
+        String[] attrs = str.split("&"); //Si il y a plusieurs parametres
 
-        for(int i = 0; i < tmp.length; i += 2) {
-            datas.put(tmp[i], tmp[i+1]);
+        for(int i = 0; i < attrs.length; i++) {
+            String[] tmp = attrs[i].split("=");
+
+            for(int j = 0; j < tmp.length; j += 2) {
+                datas.put(tmp[j], tmp[j+1]);
+            }
         }
 
-        Tache tache = new Tache(datas.get("nomTache"), "");
+        String nom = datas.get("nom") != null ? datas.get("nom") : "";
+        String description = datas.get("description") != null ? datas.get("description") : "";
+
+        Tache tache = new Tache(nom, description);
         tache.save();
         renderJSON(tache);
     }
